@@ -1,0 +1,17 @@
+@import "./typography.scss";
+
+body {
+  background-color: #000;
+}
+
+.ctn {
+  max-width: 1280px;
+  width: inherit;
+  margin: 0 auto;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+}
