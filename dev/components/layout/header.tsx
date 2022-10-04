@@ -1,7 +1,32 @@
 import styles from "@styles/layout/header.module.scss";
 import cls from "classnames";
+import Link from "next/link";
+import Image from "next/image";
+
+interface LinkType {
+  icon: string;
+  src: string;
+  alt: string;
+}
 
 const navs = ["Home", "Speaker", "TearDown", "Battery"];
+const links: LinkType[] = [
+  {
+    icon: "/icons/locate.svg",
+    src: "#",
+    alt: "locate icon",
+  },
+  {
+    icon: "/icons/fb.svg",
+    src: "#",
+    alt: "facebook icon",
+  },
+  {
+    icon: "/icons/ytb.svg",
+    src: "#",
+    alt: "Youtube icon",
+  },
+];
 
 function Header() {
   return (
@@ -12,11 +37,20 @@ function Header() {
             <NavItem title={title} key={title} />
           ))}
         </nav>
-        <a className={cls("subtitle")}>SPEAKERCITY</a>
-        <div>
-          <button>a</button>
-          <button>b</button>
-          <button>c</button>
+        <Link href="/">
+          <a className={cls("subtitle")}>SPEAKERCITY</a>
+        </Link>
+        <div className={cls(styles.btnWrapper)}>
+          {links.map(link => (
+            <a href={link.src} key={link.icon}>
+              <Image
+                src={link.icon}
+                alt={link.alt}
+                width="24px"
+                height="24px"
+              />
+            </a>
+          ))}
         </div>
       </div>
     </header>

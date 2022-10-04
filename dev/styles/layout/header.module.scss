@@ -7,6 +7,7 @@
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(0, 0, 0, 0.17);
+  z-index: 1;
 }
 
 .container {
@@ -27,4 +28,14 @@
 
 .navItem {
   margin-right: 1rem;
+}
+
+.btnWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: end;
+  & > a {
+    margin-left: 1rem;
+  }
 }
