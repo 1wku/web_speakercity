@@ -1,18 +1,17 @@
 {
   "root": true,
   "project": {
-    "name": "speakercity-manage"
+    "name": "speakercity"
   },
   "api": {
-    "projectId": "i47tmo5p",
+    "projectId": "z8395xip",
     "dataset": "production"
   },
   "plugins": [
     "@sanity/base",
     "@sanity/default-layout",
     "@sanity/default-login",
-    "@sanity/desk-tool",
-    "barcode-input"
+    "@sanity/desk-tool"
   ],
   "env": {
     "development": {
