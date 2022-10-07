@@ -1,8 +1,13 @@
 .banner {
   width: 100%;
   height: 90vh;
-  min-height: 600px;
+  min-height: 37.5rem;
   position: relative;
+  background: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.4) 89.06%
+  );
   &__image {
     position: absolute;
     top: 0;
@@ -10,7 +15,6 @@
     left: 0;
     right: 0;
     z-index: -1;
-
     // width: 100%;
     // height: 100%;
     // transform: translate(-50%, -50%);
@@ -22,10 +26,9 @@
       animation: banner_in 1.5s ease-out 1 forwards;
     }
   }
-
   &__title {
     animation: banner_title_in 1.5s ease-out 1 forwards;
-    height: 80%;
+    height: 85%;
     display: flex;
     flex-direction: column;
     align-items: start;

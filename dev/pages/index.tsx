@@ -1,9 +1,11 @@
 import Banner from "components/home/banner";
-import type { NextPage } from "next";
-import Head from "next/head";
-import Image from "next/image";
+import Brands, { Brand } from "components/home/brands";
 
-const Home: NextPage = () => {
+import client from "@client";
+import groq from "groq";
+import Head from "next/head";
+
+function Home({ brands }: { brands: Brand[] }) {
   return (
     <div>
       <Head>
@@ -17,10 +19,27 @@ const Home: NextPage = () => {
 
       <main>
         <Banner />
-        Main
+        <Brands brands={brands} />
       </main>
     </div>
   );
-};
+}
 
 export default Home;
+
+export async function getStaticProps() {
+  const brands = await client.fetch(groq`
+	*[_type == "brand"]
+	{
+		name,
+		slug,
+		mainImage
+	}
+    `);
+
+  return {
+    props: {
+      brands,
+    },
+  };
+}
