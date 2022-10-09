@@ -73,14 +73,28 @@
       position: relative;
       width: 416px;
       height: 100%;
-      background: linear-gradient(
-        180deg,
-        rgba(0, 0, 0, 0) 40.1%,
-        rgba(0, 0, 0, 0.71) 100%
-      );
+      &::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        z-index: -1;
+        opacity: 0.6;
+        transition: all 0.5s ease-out;
+        background: linear-gradient(
+          180deg,
+          rgba(0, 0, 0, 0) 40.1%,
+          rgba(0, 0, 0, 0.71) 100%
+        );
+      }
       border-radius: 6px;
       overflow: hidden;
       &:hover {
+        &::after {
+          opacity: 1;
+        }
         .brands__sliceItem_image {
           transform: scale(1.1);
         }
@@ -97,7 +111,7 @@
         left: 0;
         right: 0;
         bottom: 0;
-        z-index: -1;
+        z-index: -2;
         transition: all 0.5s ease-out;
         & img {
           object-fit: cover !important;

@@ -2,16 +2,20 @@ import cls from "classnames";
 
 import styles from "@styles/common/button.module.scss";
 
-function Button(props: {
+interface Button {
   content: string;
   handleClick: Function;
-  position: string;
-}) {
+  position?: string;
+}
+
+function Button(props: Button) {
   return (
     <button
-      className={cls(styles.button, "label", {
-        [styles[props.position]]: props.position,
-      })}
+      className={cls(
+        styles.button,
+        "label",
+        styles[props.position || ""],
+      )}
       onClick={() => props.handleClick()}
     >
       {props.content}

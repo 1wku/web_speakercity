@@ -4,8 +4,18 @@ import Brands, { Brand } from "components/home/brands";
 import client from "@client";
 import groq from "groq";
 import Head from "next/head";
+import Introduction, {
+  Intro,
+} from "components/home/introduction";
+import Price from "components/home/price";
 
-function Home({ brands }: { brands: Brand[] }) {
+function Home({
+  brands,
+  intros,
+}: {
+  brands: Brand[];
+  intros: Intro[];
+}) {
   return (
     <div>
       <Head>
@@ -20,6 +30,8 @@ function Home({ brands }: { brands: Brand[] }) {
       <main>
         <Banner />
         <Brands brands={brands} />
+        <Introduction intros={intros} />
+        <Price />
       </main>
     </div>
   );
@@ -28,18 +40,28 @@ function Home({ brands }: { brands: Brand[] }) {
 export default Home;
 
 export async function getStaticProps() {
-  const brands = await client.fetch(groq`
-	*[_type == "brand"]
-	{
-		name,
-		slug,
-		mainImage
-	}
+  const { brands, intros } = await client.fetch(groq`
+    	{
+				"intros": *[_type == "introduce"] 
+					{
+						title,
+						bio,
+						link
+					},
+        "brands":	*[_type == "brand"] 
+    			{
+    				name,
+    				slug,
+    				mainImage
+    			}
+			}	
     `);
+  console.log({ intros });
 
   return {
     props: {
       brands,
+      intros,
     },
   };
 }
