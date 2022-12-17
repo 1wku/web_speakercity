@@ -7,14 +7,16 @@ import Head from "next/head";
 import Introduction, {
   Intro,
 } from "components/home/introduction";
-import Price from "components/home/price";
+import Prices, { Price } from "components/home/price";
 
 function Home({
   brands,
   intros,
+  prices,
 }: {
   brands: Brand[];
   intros: Intro[];
+  prices: Price[];
 }) {
   return (
     <div>
@@ -31,7 +33,7 @@ function Home({
         <Banner />
         <Brands brands={brands} />
         <Introduction intros={intros} />
-        <Price />
+        <Prices prices={prices.reverse()} />
       </main>
     </div>
   );
@@ -40,7 +42,8 @@ function Home({
 export default Home;
 
 export async function getStaticProps() {
-  const { brands, intros } = await client.fetch(groq`
+  const { brands, intros, prices } =
+    await client.fetch(groq`
     	{
 				"intros": *[_type == "introduce"] 
 					{
@@ -53,15 +56,21 @@ export async function getStaticProps() {
     				name,
     				slug,
     				mainImage
-    			}
+    			}, 
+        "prices":	*[_type == "price"] 
+    			{
+    				name,
+    				price,
+						imageUrl
+    			}, 
 			}	
     `);
-  console.log({ intros });
 
   return {
     props: {
       brands,
       intros,
+      prices,
     },
   };
 }

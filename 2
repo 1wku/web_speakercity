@@ -1,0 +1,35 @@
+import Image from "next/image";
+import { urlFor } from "@services";
+import { useNextSanityImage } from "next-sanity-image";
+import client from "@client";
+
+export interface Brand {
+  name: string;
+  slug: { current: string };
+  mainImage: string;
+}
+
+function Brands({ brands }: { brands: Brand[] }) {
+  return (
+    <div>
+      {brands.map((brand: Brand) => {
+        const imageProps = useNextSanityImage(
+          client,
+          brand.mainImage,
+        );
+        return (
+          <div key={brand.slug.current}>
+            {brand.name}
+            <Image
+              {...imageProps}
+              width="200px"
+              height="200px"
+            />
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
+export default Brands;

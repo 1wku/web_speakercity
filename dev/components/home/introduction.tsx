@@ -40,7 +40,7 @@ function Introduction({ intros }: { intros: Intro[] }) {
   const handleClick = () => {};
   const [firstIntro, ...newIntros] = intros.reverse();
   return (
-    <div className={cls(styles.wrapper, "tcn")}>
+    <div className={cls(styles.wrapper, "ctn")}>
       <div className={styles.main}>
         <div className={styles.main__video}>
           <iframe
@@ -53,11 +53,13 @@ function Introduction({ intros }: { intros: Intro[] }) {
             allowFullScreen
           ></iframe>
         </div>
-        <Intro
-          data={firstIntro}
-          handleClick={handleClick}
-          position="center"
-        />
+        <div className={cls(styles.main__intro)}>
+          <Intro
+            data={firstIntro}
+            handleClick={handleClick}
+            position="center"
+          />
+        </div>
       </div>
       <div className={styles.sub}>
         {newIntros.map((intro, index) => (

@@ -1,6 +1,6 @@
 import cls from "classnames";
-
 import styles from "@styles/common/button.module.scss";
+import React from "react";
 
 interface Button {
   content: string;

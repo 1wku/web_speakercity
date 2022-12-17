@@ -1,9 +1,8 @@
 .wrapper {
-  padding: 5rem;
+  padding: 5rem 0;
 }
 
 .main {
-  height: 23.375rem;
   display: flex;
   flex-direction: row;
   // glass
@@ -15,6 +14,13 @@
   z-index: 1;
   &__video {
     width: 50%;
+  }
+  &__intro {
+    width: 50%;
+    padding: 5rem 0;
+    & > * {
+      width: initial  !important;
+    }
   }
 }
 
